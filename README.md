@@ -12,6 +12,7 @@ The Admixed American (AMR) population of the 1000 Genomes Project Phase 3 datase
 | --------- | --------- | ----------- | ------- |
 | RFMix  | random forest  | required | yes |
 | MOSAIC | two layer HMM  | required | yes |
+| G-Nomix  |   |  |  |
 
 
 ### Running each software
@@ -28,6 +29,7 @@ _Add command here_
 
 
 **G-Nomix v#####**
+
 _Add command here_ 
 
 
