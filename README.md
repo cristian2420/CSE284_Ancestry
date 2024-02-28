@@ -17,13 +17,17 @@ The Admixed American (AMR) population of the 1000 Genomes Project Phase 3 datase
 ### Running each software
 We ran each software sing default parameters as follows:
 
-** RFMix v2 **
+**RFMix v2**
+
 _Add command here_ 
 
-** MOSAIC v##### **
+
+**MOSAIC v#####**
+
 _Add command here_ 
 
-** G-Nomix v##### **
+
+**G-Nomix v#####**
 _Add command here_ 
 
 
