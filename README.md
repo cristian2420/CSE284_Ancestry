@@ -75,7 +75,7 @@ TBD
 
 ### Evaluation of the results
 
-Each sofware give us a msp file with the local ancestry of each individual per chromosome. We will use (haptools)[https://haptools.readthedocs.io/en/stable/project_info/installation.html] to plot karyotypes for given donors and generate examples. The `msp2bp.R` script will covert the msp files to bp, format needed by haptools to plot the karyotypes.
+Each sofware give us a msp file with the local ancestry of each individual per chromosome. We will use [haptools](https://haptools.readthedocs.io/en/stable/project_info/installation.html) to plot karyotypes for given donors and generate examples. The `msp2bp.R` script will covert the msp files to bp, format needed by haptools to plot the karyotypes.
 
 Here are some examples of how to run the `msp2bp.R` script:
 
@@ -91,7 +91,7 @@ By default the command above will transform the data for all donors. However, if
 Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.msp -d "HG01173,NA19777"
 ```
 
-After generating the bp files, we can use `haptools` as follows:
+After generating the bp files, we can use `haptools karyogram` as follows:
 
 ```bash
 haptools karyogram \
