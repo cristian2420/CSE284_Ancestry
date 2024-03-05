@@ -20,8 +20,7 @@ We ran each software using default parameters as follows:
 
 **RFMix v2**
 
-_Add command here_ 
-
+Please refer to ./RFMix folder
 
 **MOSAIC v#####**
 
