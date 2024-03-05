@@ -1,0 +1,41 @@
+gnomix_path = "/mnt/BioAdHoc/Groups/vd-vijay/Cristian/UCSD/CSE_284/gnomix"
+
+CHROMS = list(range(1,23))
+POPCOUNT = ["150", "350", "250", "all"]
+
+rule all:
+    input:
+        expand("results/AMR_{popcount}/{chrom}/query_results.msp", popcount = POPCOUNT, chrom = CHROMS),
+        expand("results/AMR_{popcount}/{chrom}/query_results.fb", popcount = POPCOUNT, chrom = CHROMS)
+    
+rule subset_vcfs:
+  input:
+    vcf = "1000GenomesPhase3_phased/class_data/ALL.chr{chrom}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz",
+    popcount = "data/AMR_pop_{popcount}_samples.txt"
+  output:
+    vcf = "1000GenomesPhase3_phased/subsample/{popcount}/AMR.chr{chrom}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz"
+  threads: 4
+  resources:
+    mem_gb=40,
+    walltime = 180
+  shell:
+    "bcftools view -S {input.popcount} {input.vcf} --force-samples -Oz -o {output.vcf}"
+
+rule gnomix:
+    input:
+        vcf = "1000GenomesPhase3_phased/subsample/{popcount}/AMR.chr{chrom}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz"
+    output:
+        map = "results/AMR_{popcount}/{chrom}/query_results.msp",
+        fb = "results/AMR_{popcount}/{chrom}/query_results.fb"
+    params:
+        script = gnomix_path + "/gnomix.py",
+        outdir = "results/AMR_{popcount}/{chrom}/",
+        model = gnomix_path + "/pretrained_gnomix_models/chr{chrom}/model_chm_{chrom}.pkl"
+    benchmark:
+        "benchmarks/AMR_{popcount}/gnomix.{chrom}.benchmark.txt"
+    threads: 4
+    resources:
+        mem_gb=200,
+        walltime = 1500
+    shell:
+        "source ../gnomix/gnomix/bin/activate; python3 {params.script} {input.vcf}  {params.outdir} {wildcards.chrom} False {params.model} "
