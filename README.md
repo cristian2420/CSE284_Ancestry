@@ -20,16 +20,14 @@ We ran each software using default parameters as follows:
 
 **RFMix v2**
 
-Please refer to ./RFMix folder
-
-**MOSAIC v#####**
-
-_Add command here_ 
-
+Details of how RFMix was run in this analysis can be find in the ./RFMix folder.
 
 **G-Nomix v#####**
 
 Details of how G-Nomix was run in this analysis can be find in the [G-Nomix_analysis.ipynb](G-Nomix_analysis.ipynb) notebook.
 
+**MOSAIC v**
+
+TBD
 
 
