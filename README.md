@@ -82,7 +82,7 @@ Here are some examples of how to run the `msp2bp.R` script:
 It only requires an input directory with subfolders per each chromosome and an output file name. We can specify the file name of each file with the `--ifile` or `-f` flag, default name is `query_results.msp`.
 
 ```bash
-Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.msp 
+Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.bp 
 ```
 
 By default the command above will transform the data for all donors. However, if we want to transform the data for a subset of donors, we can use the `--donor` or `-d` flag. If multiple donors are used, they should be separated by a comma and no spaces.
@@ -90,8 +90,17 @@ By default the command above will transform the data for all donors. However, if
 ```bash
 Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.msp -d "HG01173,NA19777"
 ```
-    
 
+After generating the bp files, we can use `haptools` as follows:
+
+```bash
+haptools karyogram \
+        --bp example.bp \
+        --sample NA19777 \
+        --out NA19777.png \
+        --title NA19777 \
+        --colors 'EUR:blue,AFR:red,EAS:green,SAS:purple,NAT:orange,OCE:cyan,AHG:gray,OCE:brown,WAS:magenta'
+```
 
 ## TODO
 - [ ] Add MOSAIC details
