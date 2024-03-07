@@ -65,7 +65,7 @@ We ran each software using default parameters as follows:
 
 Details of how RFMix was run in this analysis can be find in the [RFMix](./RFMix) folder.
 
-**G-Nomix v#**
+**[G-Nomix](https://github.com/AI-sandbox/gnomix)**
 
 Details of how G-Nomix was run in this analysis can be find in the [G-Nomix_analysis.ipynb](./GNomix/G-Nomix_analysis.ipynb) notebook.
 
@@ -73,19 +73,38 @@ Details of how G-Nomix was run in this analysis can be find in the [G-Nomix_anal
 
 TBD
 
-### Evaluation of the results
+### Evaluation of results
 
-Each sofware give us a msp file with the local ancestry of each individual per chromosome. We will use [haptools](https://haptools.readthedocs.io/en/stable/project_info/installation.html) to plot karyotypes for given donors and generate examples. The `msp2bp.R` script will covert the msp files to bp, format needed by haptools to plot the karyotypes.
+#### Requirements
+
+The majority of downstream analyses were performed in R. The scripts below make use the following libraries:
+
+- [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+- [here](https://here.r-lib.org/)
+
+#### Computational resources
+We can evaluate the runtime and memory usage against sample size by running the following script:
+
+```bash
+Rscript runtime_memory_performace_plot.R
+```
+
+![Memory Usage](./results/plot_memory.png)
+![Run Time](./results/plot_runtime.png)
+
+#### Local ancestry
+Each software outputs a msp file with the local ancestry of each individual per chromosome. We will use [haptools](https://haptools.readthedocs.io/en/stable/project_info/installation.html) to plot karyotypes for given donors and generate examples. The `msp2bp.R` script will covert the msp files to bp, a format haptools need to plot the karyotypes.
 
 Here are some examples of how to run the `msp2bp.R` script:
 
-It only requires an input directory with subfolders per each chromosome and an output file name. We can specify the file name of each file with the `--ifile` or `-f` flag, default name is `query_results.msp`.
+It only requires an input directory with subfolders per each chromosome and an output file name. We can specify the file name of each file with the `--ifile` or `-f` flag, the default name is `query_results.msp`.
 
 ```bash
 Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.bp 
 ```
 
-By default the command above will transform the data for all donors. However, if we want to transform the data for a subset of donors, we can use the `--donor` or `-d` flag. If multiple donors are used, they should be separated by a comma and no spaces.
+By default, the command above will transform the data for all donors. However, if we want to transform the data for a subset of donors, we can use the `--donor` or `-d` flag. If multiple donors are used, they should be separated by a comma and no spaces.
 
 ```bash
 Rscript msp2bp.R -i results_gnomix/AMR_all/ -o example.msp -d "HG01173,NA19777"
@@ -101,6 +120,8 @@ haptools karyogram \
         --title NA19777 \
         --colors 'EUR:blue,AFR:red,EAS:green,SAS:purple,NAT:orange,OCE:cyan,AHG:gray,OCE:brown,WAS:magenta'
 ```
+The karyotype below shows an example of local ancestry inferred by GNomix:
+![Gnomix NA19777](./results/gnomix_NA19777.png)
 
 ## TODO
 - [ ] Add MOSAIC details
