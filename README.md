@@ -61,7 +61,7 @@ Where `{input.popcount}` is the file with the list of individuals and `{input.vc
 ### Running each software
 We ran each software using default parameters as follows:
 
-**RFMix v2**
+**[RFMix v2](https://github.com/slowkoni/rfmix)**
 
 Details of how RFMix was run in this analysis can be find in the [RFMix](./RFMix) folder.
 
