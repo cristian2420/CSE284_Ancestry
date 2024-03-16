@@ -12,7 +12,7 @@ The Admixed American (AMR) population of the 1000 Genomes Project Phase 3 datase
 | --------- | --------- | ----------- | ------- |
 | RFMix  | random forest  | required | yes |
 | MOSAIC | two layer HMM  | required | yes |
-| G-Nomix  |   |  |  |
+| G-Nomix  | Two stages: 1) base module, 2) Smoother module | Required, can correct phasing errors | no |
 
 ### Download 1000 Genoms Project phased data Phase 3 
 
@@ -69,9 +69,9 @@ Details of how RFMix was run in this analysis can be find in the [RFMix](./RFMix
 
 Details of how G-Nomix was run in this analysis can be find in the [G-Nomix_analysis.ipynb](./GNomix/G-Nomix_analysis.ipynb) notebook.
 
-**MOSAIC v#**
+**MOSAIC**
 
-TBD
+Not run successfully 
 
 ### Evaluation of results
 
@@ -122,11 +122,5 @@ haptools karyogram \
 ```
 The karyotype below shows an example of local ancestry inferred by GNomix:
 ![Gnomix NA19777](./results/gnomix_NA19777.png)
-
-## TODO
-- [ ] Add MOSAIC details
-- [ ] Add References
-- [ ] Add downstream local ancestry analysis
-- [ ] Add benchmarking results
 
 
